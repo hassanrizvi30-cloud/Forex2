@@ -3,370 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teal Rook Trading - Future of Forex</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Teal Rook - Premium Trading Academy</title>
+    
+    <!-- Professional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- THEME FROM YOUR IMAGE --- */
+        /* --- HIGH END VARIABLES --- */
         :root {
-            /* 1. Darkest shade from image (Left/Top) */
-            --bg-dark: #0a041c; 
-            
-            /* 2. Middle Purple shade */
-            --bg-card: #180a33;
-            
-            /* 3. Bright Pink/Magenta from image (Right/Bottom) */
-            --accent-pink: #d90368;
-            --accent-glow: #ff0f7b;
-            
-            /* 4. The Gradient (Exactly like the image) */
-            --main-gradient: linear-gradient(135deg, #10002b 0%, #240046 50%, #d90368 100%);
-            
+            --bg-deep: #0f0524;       /* Darkest Purple */
+            --bg-surface: #1a0b36;    /* Slightly Lighter for cards */
+            --primary: #C01798;       /* Hot Magenta */
+            --secondary: #22135F;     /* Deep Blue/Violet */
+            --accent: #00f2ff;        /* Cyan for glowing effects */
             --text-white: #ffffff;
-            --text-gray: #b0a8b9;
+            --text-gray: #b4aebb;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border-glass: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        /* --- GLOBAL & ANIMATIONS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
         
-        /* Poori Body ka background Dark rahega taake Colors Pop karein */
-        body { background-color: var(--bg-dark); color: var(--text-white); line-height: 1.6; }
-        
-        a { text-decoration: none; transition: 0.3s; }
-        ul { list-style: none; }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-        /* --- BUTTONS (Gradient Style) --- */
-        .btn {
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-block;
-            text-transform: uppercase;
-            font-size: 14px;
-            letter-spacing: 1px;
-            border: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .btn-glow {
-            background: linear-gradient(90deg, #b0005d, #ff0f7b);
-            color: white;
-            box-shadow: 0 0 20px rgba(217, 3, 104, 0.4); /* Pink Glow Effect */
-        }
-        
-        .btn-glow:hover {
-            box-shadow: 0 0 30px rgba(217, 3, 104, 0.7);
-            transform: translateY(-2px);
+        body { 
+            background-color: var(--bg-deep); 
+            color: var(--text-white); 
+            overflow-x: hidden; 
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(192, 23, 152, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(34, 19, 95, 0.3) 0%, transparent 40%);
         }
 
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid var(--accent-pink);
+        /* Fade Up Animation */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        
+        .animate-up { animation: fadeUp 1s ease forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
 
-        .btn-outline:hover {
-            background: var(--accent-pink);
-            box-shadow: 0 0 15px var(--accent-pink);
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+
+        /* --- TICKER TAPE (Top Bar) --- */
+        .ticker-wrap {
+            width: 100%; overflow: hidden; background-color: #000; padding: 8px 0; border-bottom: 1px solid var(--border-glass);
         }
+        .ticker { display: flex; animation: ticker 20s linear infinite; white-space: nowrap; }
+        .ticker-item { margin-right: 40px; color: var(--text-gray); font-size: 13px; font-family: 'Poppins'; }
+        .ticker-item span { color: #00ff88; font-weight: bold; margin-left: 5px; }
+        .ticker-item span.down { color: #ff3b3b; }
+        
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- HEADER (Glassmorphism) --- */
+        /* --- GLASS HEADER --- */
         header {
-            background: rgba(10, 4, 28, 0.8); /* See-through dark */
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(15, 5, 36, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border-glass);
+            padding: 15px 0;
         }
+        nav { display: flex; justify-content: space-between; align-items: center; }
         
-        nav { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-size: 28px; font-weight: 800; letter-spacing: -1px; display: flex; align-items: center; gap: 10px; }
+        .logo i { background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 32px; }
         
-        .logo { font-size: 24px; font-weight: 800; color: white; letter-spacing: 1px; }
-        .logo i { color: var(--accent-glow); margin-right: 10px; }
-        
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 500; }
-        .nav-links a:hover { color: var(--accent-glow); text-shadow: 0 0 10px var(--accent-glow); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { 
+            color: var(--text-white); font-weight: 500; font-size: 15px; position: relative; opacity: 0.8; transition: 0.3s; 
+        }
+        .nav-links a:hover { opacity: 1; color: var(--primary); }
+        .nav-links a::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
+            background: var(--primary); transition: 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
 
-        /* --- HERO SECTION (Gradient Background from Image) --- */
+        .btn-glow {
+            padding: 12px 30px; border-radius: 50px; border: none; font-weight: 700; cursor: pointer;
+            background: linear-gradient(90deg, var(--primary), #8e0e70);
+            color: white; box-shadow: 0 0 20px rgba(192, 23, 152, 0.4);
+            transition: 0.3s; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;
+        }
+        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(192, 23, 152, 0.7); }
+
+        /* --- HERO SECTION --- */
         .hero {
-            padding: 100px 0;
-            background: var(--main-gradient); /* Image wala Gradient */
-            display: flex; align-items: center;
-            position: relative;
+            padding: 120px 0 80px; display: flex; align-items: center; justify-content: space-between; position: relative;
         }
-        
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        
-        .hero-text h1 { font-size: 54px; line-height: 1.2; margin-bottom: 20px; font-weight: 700; }
-        .hero-text h1 span { 
-            color: transparent;
-            background: linear-gradient(to right, #ff5ea5, #ffffff);
-            -webkit-background-clip: text; /* Text ke andar gradient */
-        }
-        
-        .hero-text p { color: rgba(255,255,255,0.8); font-size: 18px; margin-bottom: 30px; }
-        
-        .hero-img img {
-            width: 100%; border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
+        /* Background Glow Element */
+        .hero::before {
+            content: ''; position: absolute; width: 400px; height: 400px; background: var(--secondary);
+            filter: blur(150px); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; opacity: 0.4;
         }
 
-        /* --- STATS STRIP --- */
-        .stats {
-            background-color: var(--bg-card);
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding: 40px 0;
+        .hero-content { flex: 1; max-width: 600px; z-index: 2; }
+        
+        .badge {
+            display: inline-block; padding: 8px 15px; background: rgba(192, 23, 152, 0.15); 
+            border: 1px solid var(--primary); border-radius: 30px; color: var(--primary); 
+            font-size: 12px; font-weight: 700; margin-bottom: 25px; text-transform: uppercase;
         }
-        .stats-grid { display: flex; justify-content: space-around; text-align: center; }
-        .stat-box h3 { font-size: 38px; color: var(--accent-glow); margin-bottom: 5px; }
-        .stat-box p { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-gray); }
+        
+        h1 {
+            font-size: 64px; line-height: 1.1; margin-bottom: 25px; font-weight: 800;
+        }
+        h1 span {
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-p { font-size: 18px; color: var(--text-gray); margin-bottom: 40px; line-height: 1.8; }
+        
+        .hero-btns { display: flex; gap: 20px; }
+        .btn-outline {
+            padding: 12px 30px; border-radius: 50px; border: 2px solid rgba(255,255,255,0.2); 
+            background: transparent; color: white; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .btn-outline:hover { border-color: var(--primary); background: rgba(192, 23, 152, 0.1); }
 
-        /* --- COURSES SECTION --- */
-        .courses { padding: 100px 0; background-color: var(--bg-dark); }
-        
-        .section-title { text-align: center; margin-bottom: 60px; }
-        .section-title h2 { font-size: 36px; margin-bottom: 10px; }
-        .section-title p { color: var(--text-gray); }
-        
-        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
-        .card {
-            background: var(--bg-card); /* Dark Purple Card */
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 15px;
-            transition: 0.4s;
-            overflow: hidden;
-            position: relative;
+        .hero-visual { flex: 1; position: relative; z-index: 2; perspective: 1000px; }
+        .hero-card {
+            background: rgba(30, 20, 60, 0.6); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 20px;
+            transform: rotateY(-10deg) rotateX(5deg); box-shadow: 30px 30px 50px rgba(0,0,0,0.5);
+            transition: 0.5s;
         }
-        
-        /* Glow on Hover */
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-pink);
-            box-shadow: 0 0 30px rgba(217, 3, 104, 0.2);
+        .hero-card:hover { transform: rotateY(0) rotateX(0); }
+        .hero-card img { width: 100%; border-radius: 10px; }
+
+        /* --- STATS BAR (Modern) --- */
+        .stats-bar {
+            background: var(--bg-surface); margin-top: 50px; padding: 40px 0; border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);
         }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .stat h3 { font-size: 36px; color: white; font-weight: 700; margin-bottom: 5px; }
+        .stat p { color: var(--text-gray); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        .stat i { font-size: 24px; color: var(--primary); margin-bottom: 10px; }
+
+        /* --- FEATURES GRID --- */
+        .features-section { padding: 100px 0; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
+        .section-header h2 { font-size: 42px; margin-bottom: 15px; }
+        .section-header p { color: var(--text-gray); }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+
+        .feature-box {
+            background: var(--glass); border: 1px solid var(--border-glass);
+            padding: 40px; border-radius: 20px; transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .feature-box:hover { background: rgba(255,255,255,0.08); border-color: var(--primary); transform: translateY(-10px); }
         
-        .card-header { padding: 30px; background: rgba(0,0,0,0.2); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .card-header h3 { font-size: 22px; color: white; }
-        .price { color: var(--accent-glow); font-size: 28px; font-weight: 700; display: block; margin-top: 10px; }
+        .icon-wrap {
+            width: 60px; height: 60px; background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 15px; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: white; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(192, 23, 152, 0.3);
+        }
+        .feature-box h3 { font-size: 22px; margin-bottom: 15px; }
+        .feature-box p { color: var(--text-gray); line-height: 1.6; font-size: 15px; }
+
+        /* --- PRICING CARDS (Glassmorphism) --- */
+        .pricing-section { padding: 80px 0; position: relative; }
+        .pricing-card {
+            background: var(--bg-surface); border: 1px solid var(--border-glass);
+            border-radius: 25px; overflow: hidden; transition: 0.4s; position: relative;
+        }
+        .pricing-card.featured {
+            background: linear-gradient(145deg, #1f0b3d, #2d0f36);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 40px rgba(192, 23, 152, 0.15); transform: scale(1.05); z-index: 2;
+        }
+        .pricing-header { padding: 40px 30px 20px; text-align: center; }
+        .price-num { font-size: 48px; font-weight: 700; color: white; }
+        .price-num span { font-size: 16px; color: var(--text-gray); font-weight: 400; }
         
-        .card-body { padding: 30px; }
-        .features li { margin-bottom: 15px; color: var(--text-gray); display: flex; align-items: center; }
-        .features li i { color: var(--accent-pink); margin-right: 15px; }
+        .pricing-body { padding: 30px; }
+        .pricing-list li { margin-bottom: 18px; color: #ccc; display: flex; align-items: center; font-size: 15px; }
+        .pricing-list li i { color: var(--primary); margin-right: 15px; background: rgba(192, 23, 152, 0.2); width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; }
         
         .btn-full {
-            width: 100%; display: block; text-align: center;
-            background: transparent; color: white;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 12px; border-radius: 5px; font-weight: 600; transition: 0.3s;
+            width: 100%; padding: 15px; border-radius: 15px; border: none; font-weight: 700;
+            background: rgba(255,255,255,0.1); color: white; cursor: pointer; transition: 0.3s;
         }
-        
-        .card:hover .btn-full {
-            background: var(--accent-pink);
-            border-color: var(--accent-pink);
-            box-shadow: 0 0 15px var(--accent-pink);
-        }
-
-        /* --- LEAD SECTION --- */
-        .lead-section {
-            background: linear-gradient(to right, #240046, #d90368);
-            padding: 80px 0; text-align: center;
-        }
+        .featured .btn-full { background: var(--primary); box-shadow: 0 10px 20px rgba(192, 23, 152, 0.3); }
+        .btn-full:hover { background: white; color: black; }
 
         /* --- FOOTER --- */
-        footer {
-            background-color: #050210; /* Almost Black */
-            padding: 70px 0 20px; border-top: 1px solid rgba(255,255,255,0.1);
-        }
+        footer { background: #05010f; padding: 80px 0 30px; border-top: 1px solid var(--border-glass); margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-logo { font-size: 24px; font-weight: 700; color: white; margin-bottom: 20px; display: block; }
+        .footer-desc { color: var(--text-gray); line-height: 1.6; max-width: 300px; }
         
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 50px; }
-        .footer-col h4 { color: white; margin-bottom: 25px; border-left: 3px solid var(--accent-pink); padding-left: 10px; }
-        .footer-col a { color: var(--text-gray); display: block; margin-bottom: 12px; font-size: 14px; }
-        .footer-col a:hover { color: var(--accent-pink); padding-left: 5px; }
+        .footer-col h4 { color: white; margin-bottom: 25px; font-size: 18px; }
+        .footer-col a { display: block; color: var(--text-gray); margin-bottom: 12px; font-size: 14px; transition: 0.3s; }
+        .footer-col a:hover { color: var(--primary); padding-left: 5px; }
         
-        .socials a {
-            display: inline-flex; width: 40px; height: 40px; background: rgba(255,255,255,0.1);
-            border-radius: 50%; align-items: center; justify-content: center; margin-right: 10px; color: white;
-        }
-        .socials a:hover { background: var(--accent-pink); box-shadow: 0 0 15px var(--accent-pink); }
+        .socials a { display: inline-block; width: 40px; height: 40px; background: rgba(255,255,255,0.1); text-align: center; line-height: 40px; border-radius: 50%; margin-right: 10px; color: white; }
+        .socials a:hover { background: var(--primary); }
 
-        /* Mobile */
-        @media (max-width: 768px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+        @media(max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 80px; }
+            .hero-btns { justify-content: center; }
+            .hero-card { margin-top: 50px; transform: none; }
             .nav-links { display: none; }
-            .hero-text h1 { font-size: 40px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 42px; }
+            .pricing-card.featured { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- 1. TICKER TAPE (Standard in Pro Sites) -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item">EUR/USD <span>1.0845</span></div>
+            <div class="ticker-item">GBP/USD <span class="down">1.2350</span></div>
+            <div class="ticker-item">XAU/USD (GOLD) <span>2035.10</span></div>
+            <div class="ticker-item">BTC/USD <span>42,500.00</span></div>
+            <div class="ticker-item">NASDAQ <span>14,800.50</span></div>
+            <div class="ticker-item">EUR/USD <span>1.0845</span></div> <!-- Repeating for loop -->
+            <div class="ticker-item">GBP/USD <span class="down">1.2350</span></div>
+            <div class="ticker-item">XAU/USD (GOLD) <span>2035.10</span></div>
+        </div>
+    </div>
+
+    <!-- 2. NAVBAR -->
     <header>
         <div class="container">
             <nav>
-                <div class="logo"><i class="fas fa-layer-group"></i> TEAL ROOK</div>
+                <div class="logo">
+                    <i class="fas fa-layer-group"></i> TEAL ROOK
+                </div>
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="about.html">Community</a></li>
-                    <li><a href="contact.html">Results</a></li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Mentorship</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="#">About</a></li>
                 </ul>
-                <a href="#" class="btn btn-glow">Enroll Now</a>
+                <button class="btn-glow">Join Discord</button>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- 3. HERO SECTION (With Animation) -->
     <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <h1>Trade The Market <br><span>Like A Pro</span></h1>
-                <p>Experience the power of precise analysis. No indicators, just pure price action logic wrapped in a premium learning experience.</p>
-                <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: inherit;">
-                    <a href="#courses" class="btn btn-glow">Start Journey</a>
-                    <a href="#" class="btn btn-outline">Watch Demo</a>
+        <div class="container" style="display: flex; align-items: center; width: 100%; flex-wrap: wrap;">
+            <div class="hero-content animate-up">
+                <span class="badge">New Batch Starting Soon</span>
+                <h1>Stop Gambling. <br> Start <span>Trading.</span></h1>
+                <p class="hero-p">Teal Rook Academy teaches you the institutional way of trading. Master Smart Money Concepts (SMC) and stop losing your capital to retail traps.</p>
+                <div class="hero-btns">
+                    <button class="btn-glow">Explore Courses</button>
+                    <button class="btn-outline"><i class="fas fa-play"></i> Watch Demo</button>
                 </div>
             </div>
-            <div class="hero-img">
-                <!-- Trading Image -->
-                <img src="https://images.unsplash.com/photo-1640340434855-6084b1f4901c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Crypto Trading">
+            
+            <div class="hero-visual animate-up delay-2">
+                <div class="hero-card">
+                    <!-- High Quality Trading Image -->
+                    <img src="https://images.unsplash.com/photo-1611974765270-ca12586343bb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Trading Platform">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats -->
-    <section class="stats">
+    <!-- 4. STATS BAR -->
+    <div class="stats-bar animate-up delay-3">
         <div class="container stats-grid">
-            <div class="stat-box">
-                <h3>3,000+</h3>
-                <p>Students</p>
+            <div class="stat">
+                <i class="fas fa-users"></i>
+                <h3>3,500+</h3>
+                <p>Active Students</p>
             </div>
-            <div class="stat-box">
-                <h3>$5M+</h3>
-                <p>Volume Traded</p>
+            <div class="stat">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>15+</h3>
+                <p>Expert Mentors</p>
             </div>
-            <div class="stat-box">
+            <div class="stat">
+                <i class="fas fa-wallet"></i>
+                <h3>$2.5M</h3>
+                <p>Community Profit</p>
+            </div>
+            <div class="stat">
+                <i class="fas fa-star"></i>
                 <h3>4.9/5</h3>
-                <p>Rating</p>
+                <p>TrustPilot Score</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. WHY CHOOSE US (Grid Layout) -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Teal Rook?</h2>
+                <p>We don't sell signals. We sell a career. Our ecosystem provides everything you need to become a funded trader.</p>
+            </div>
+            <div class="grid-3">
+                <div class="feature-box">
+                    <div class="icon-wrap"><i class="fas fa-brain"></i></div>
+                    <h3>Psychology Training</h3>
+                    <p>80% of trading is mindset. We rewire your brain to think in probabilities, not uncertainties.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-wrap"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Risk Management</h3>
+                    <p>Learn the mathematical formula to grow small accounts safely without blowing up.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-wrap"><i class="fas fa-signal"></i></div>
+                    <h3>Live Execution</h3>
+                    <p>Don't just watch videos. Trade live with our mentors every day during London & NY Sessions.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Courses -->
-    <section id="courses" class="courses">
+    <!-- 6. PRICING (Complex Cards) -->
+    <section class="pricing-section">
         <div class="container">
-            <div class="section-title">
-                <h2>Choose Your Path</h2>
-                <p>Premium education packages designed for every level</p>
+            <div class="section-header">
+                <h2>Investment Plans</h2>
+                <p>Knowledge pays the best interest. Select your mentorship level.</p>
             </div>
-
-            <div class="courses-grid">
-                <!-- Basic -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Starter Pack</h3>
-                        <span class="price">PKR 5,000</span>
+            
+            <div class="grid-3">
+                <!-- Plan 1 -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="price-num">5K <span>PKR</span></div>
                     </div>
-                    <div class="card-body">
-                        <ul class="features">
+                    <div class="pricing-body">
+                        <ul class="pricing-list">
                             <li><i class="fas fa-check"></i> Basic Market Structure</li>
-                            <li><i class="fas fa-check"></i> Candle Stick Math</li>
-                            <li><i class="fas fa-check"></i> Support & Resistance</li>
+                            <li><i class="fas fa-check"></i> Candle Stick Patterns</li>
                             <li><i class="fas fa-check"></i> 1 Month Access</li>
+                            <li style="opacity: 0.5;"><i class="fas fa-times"></i> No Live Trading</li>
                         </ul>
-                        <a href="#" class="btn-full">Get Started</a>
+                        <button class="btn-full">Enroll Now</button>
                     </div>
                 </div>
 
-                <!-- Pro (Highlighted) -->
-                <div class="card" style="border-color: var(--accent-pink); box-shadow: 0 0 20px rgba(217,3,104,0.2);">
-                    <div class="card-header" style="background: linear-gradient(to right, #240046, #d90368);">
+                <!-- Plan 2 (Featured) -->
+                <div class="pricing-card featured">
+                    <div style="background: var(--primary); color: white; text-align: center; padding: 5px; font-size: 12px; font-weight: bold;">MOST POPULAR</div>
+                    <div class="pricing-header">
                         <h3>Pro Mentorship</h3>
-                        <span class="price" style="color: white;">PKR 15,000</span>
+                        <div class="price-num">15K <span>PKR</span></div>
                     </div>
-                    <div class="card-body">
-                        <ul class="features">
+                    <div class="pricing-body">
+                        <ul class="pricing-list">
                             <li><i class="fas fa-check"></i> <strong>Smart Money Concepts</strong></li>
                             <li><i class="fas fa-check"></i> Daily Live Trading</li>
-                            <li><i class="fas fa-check"></i> Risk Management Plan</li>
                             <li><i class="fas fa-check"></i> Lifetime Discord Access</li>
+                            <li><i class="fas fa-check"></i> Funded Account Guidance</li>
                         </ul>
-                        <a href="#" class="btn btn-glow" style="width: 100%; display:block; text-align:center;">Join Pro Team</a>
+                        <button class="btn-full">Join Pro Team</button>
                     </div>
                 </div>
 
-                <!-- Crypto -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Crypto Future</h3>
-                        <span class="price">PKR 8,000</span>
+                <!-- Plan 3 -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Crypto Elite</h3>
+                        <div class="price-num">8K <span>PKR</span></div>
                     </div>
-                    <div class="card-body">
-                        <ul class="features">
-                            <li><i class="fas fa-check"></i> Future Trading Setup</li>
-                            <li><i class="fas fa-check"></i> Altcoin Hunting</li>
+                    <div class="pricing-body">
+                        <ul class="pricing-list">
+                            <li><i class="fas fa-check"></i> Futures & Spot Trading</li>
+                            <li><i class="fas fa-check"></i> Alt-Coin Gem Hunting</li>
                             <li><i class="fas fa-check"></i> Blockchain Analysis</li>
-                            <li><i class="fas fa-check"></i> Portfolio Mgmt</li>
+                            <li><i class="fas fa-check"></i> Portfolio Management</li>
                         </ul>
-                        <a href="#" class="btn-full">Get Started</a>
+                        <button class="btn-full">Start Crypto</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="lead-section">
-        <div class="container">
-            <h2 style="font-size: 36px; margin-bottom: 20px;">Ready To Change Your Life?</h2>
-            <p style="margin-bottom: 30px; opacity: 0.9;">Join the fastest growing trading community in Pakistan.</p>
-            <a href="#" class="btn" style="background: white; color: var(--accent-pink);">Book Your Slot</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- 7. FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h2 class="logo">TEAL ROOK</h2>
-                    <p style="color: var(--text-gray); margin-top: 15px;">Trading is a business, treat it like one. We provide the tools you need to succeed.</p>
+                    <a href="#" class="footer-logo">TEAL ROOK</a>
+                    <p class="footer-desc">The #1 Forex & Crypto Education platform in Pakistan. Helping traders achieve financial freedom through logic and discipline.</p>
+                    <div class="socials" style="margin-top: 20px;">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <a href="#">Home</a>
                     <a href="#">About Us</a>
                     <a href="#">Success Stories</a>
-                    <a href="#">Contact</a>
+                    <a href="#">Login</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Courses</h4>
+                    <a href="#">Forex Basic</a>
+                    <a href="#">Pro Mentorship</a>
+                    <a href="#">Crypto Future</a>
+                    <a href="#">One-on-One</a>
                 </div>
                 <div class="footer-col">
                     <h4>Contact</h4>
-                    <a href="#">support@tealrook.com</a>
                     <a href="#">+92 300 1234567</a>
+                    <a href="#">support@tealrook.com</a>
                     <a href="#">Karachi, Pakistan</a>
                 </div>
-                <div class="footer-col">
-                    <h4>Socials</h4>
-                    <div class="socials">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
             </div>
-            <div style="text-align: center; color: var(--text-gray); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; font-size: 14px;">
-                &copy; 2025 Teal Rook Trading. All Rights Reserved.
+            <div style="text-align: center; color: #555; margin-top: 50px; font-size: 14px;">
+                &copy; 2025 Teal Rook Trading Academy. All Rights Reserved.
             </div>
         </div>
     </footer>
 
 </body>
-
 </html>
