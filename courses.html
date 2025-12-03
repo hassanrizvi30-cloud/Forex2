@@ -1,0 +1,109 @@
+<!-- Save as: course-detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pro Mentorship - Teal Rook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0a041c; 
+            --bg-card: #180a33;
+            --accent-pink: #d90368;
+            --main-gradient: linear-gradient(135deg, #10002b 0%, #240046 50%, #d90368 100%);
+            --text-white: #ffffff;
+            --text-gray: #b0a8b9;
+        }
+        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; margin: 0; padding: 0;}
+        body { background-color: var(--bg-dark); color: var(--text-white); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Banner */
+        .course-hero {
+            background: var(--main-gradient); padding: 80px 0;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .badge { background: var(--accent-pink); color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+
+        /* Layout */
+        .content-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 40px; padding: 60px 0;
+        }
+
+        /* Left Side */
+        .curriculum-box {
+            background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 30px;
+        }
+        .curriculum-list li {
+            padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; color: var(--text-gray);
+        }
+        .curriculum-list li:last-child { border-bottom: none; }
+        .curriculum-list i { color: var(--accent-pink); margin-right: 10px; }
+
+        /* Right Side (Sticky Card) */
+        .sticky-card {
+            background: var(--bg-card); padding: 30px; border-radius: 15px;
+            border: 2px solid var(--accent-pink); box-shadow: 0 0 30px rgba(217,3,104,0.1);
+            position: sticky; top: 20px;
+        }
+        .price-big { font-size: 36px; font-weight: 700; color: white; display: block; margin: 15px 0; }
+        .btn-buy {
+            width: 100%; background: var(--accent-pink); padding: 15px; text-align: center; color: white; font-weight: bold; border-radius: 50px; display: block; box-shadow: 0 0 20px rgba(217,3,104,0.4);
+        }
+
+        @media(max-width: 768px) { .content-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="course-hero">
+        <div class="container">
+            <span class="badge">Most Popular</span>
+            <h1 style="font-size: 42px; margin: 10px 0;">Pro Mentorship Program</h1>
+            <p style="opacity: 0.8;">Master Smart Money Concepts (SMC) in 6 Weeks.</p>
+        </div>
+    </div>
+
+    <div class="container content-grid">
+        <!-- Left Content -->
+        <div class="left-content">
+            <div class="curriculum-box">
+                <h3 style="margin-bottom: 20px; border-left: 4px solid var(--accent-pink); padding-left: 15px;">What You Will Learn</h3>
+                <ul class="curriculum-list">
+                    <li><span><i class="fas fa-play-circle"></i> Week 1: Market Structure Shift</span> <span>2 Hrs</span></li>
+                    <li><span><i class="fas fa-play-circle"></i> Week 2: Liquidity Concepts</span> <span>3 Hrs</span></li>
+                    <li><span><i class="fas fa-play-circle"></i> Week 3: Order Blocks & FVG</span> <span>2.5 Hrs</span></li>
+                    <li><span><i class="fas fa-play-circle"></i> Week 4: Risk Management Math</span> <span>1.5 Hrs</span></li>
+                    <li><span><i class="fas fa-play-circle"></i> Week 5: Live Trading Execution</span> <span>Live</span></li>
+                    <li><span><i class="fas fa-play-circle"></i> Week 6: Trader Psychology</span> <span>2 Hrs</span></li>
+                </ul>
+            </div>
+            
+            <div class="curriculum-box">
+                <h3 style="margin-bottom: 20px;">Requirements</h3>
+                <ul style="list-style: disc; padding-left: 20px; color: var(--text-gray);">
+                    <li>Basic knowledge of what Forex is.</li>
+                    <li>A laptop or PC for chart analysis.</li>
+                    <li>Patience and discipline.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-content">
+            <div class="sticky-card">
+                <p style="color: var(--text-gray);">Total Price</p>
+                <span class="price-big">PKR 15,000</span>
+                <ul style="margin: 20px 0; font-size: 14px; color: #ccc;">
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color:var(--accent-pink)"></i> Lifetime Discord Access</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color:var(--accent-pink)"></i> Daily Signals</li>
+                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color:var(--accent-pink)"></i> Certificate of Completion</li>
+                </ul>
+                <a href="#" class="btn-buy">Enroll Now</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
